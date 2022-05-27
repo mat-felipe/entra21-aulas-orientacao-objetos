@@ -6,12 +6,21 @@ import br.com.entra21.orientacao.objeto.principal.aula01.classes.Aluno;
 import br.com.entra21.orientacao.objeto.principal.aula01.classes.Professor;
 import br.com.entra21.orientacao.objeto.principal.aula02.heranca.Diretor;
 import br.com.entra21.orientacao.objeto.principal.aula02.heranca.Funcionario;
+import br.com.entra21.orientacao.objeto.principal.aula02.heranca.Pessoa;
 import br.com.entra21.orientacao.objeto.principal.aula03.polimorfismo.Atleta;
 import br.com.entra21.orientacao.objeto.principal.aula03.polimorfismo.Nadador;
 import br.com.entra21.orientacao.objeto.principal.aula03.polimorfismo.Velocista;
+import br.com.entra21.orientacao.objeto.principal.aula04.conceitospoo.Ponto;
+import br.com.entra21.orientacao.objeto.principal.aula04.conceitospoo.Reta;
+import br.com.entra21.orientacao.objeto.principal.aula04.interfaces.Aviao;
+import br.com.entra21.orientacao.objeto.principal.aula04.interfaces.Capivara;
+import br.com.entra21.orientacao.objeto.principal.aula04.interfaces.Gato;
+import br.com.entra21.orientacao.objeto.principal.aula04.interfaces.Humano;
+import br.com.entra21.orientacao.objeto.principal.aula04.interfaces.Veiculo;
 
 public class Main {
 
+	private static final String String = null;
 	// o objeto da classe Scanner esta na variavel de entrada, então é um obj
 	// porem o System.in é uma chamada static pq
 	// para acessar o in do System nao precisei dar new
@@ -28,6 +37,8 @@ public class Main {
 			System.out.println("1 - Classes e objetos");
 			System.out.println("2 - Herança");
 			System.out.println("3 - Polimorfismo");
+			System.out.println("4 - Aprender conceitos POO");
+			System.out.println("5 - Aprender polimorfismo com interface");
 			opcao = entrada.nextByte();
 
 			switch (opcao) {
@@ -45,7 +56,16 @@ public class Main {
 				aprenderClassesPolimorfismo();
 				break;
 
+			case 4:
+				aprenderConceitosPOO();
+				break;
+
+			case 5:
+				aprenderPolimorfismoInterface();
+				break;
+
 			default:
+				System.out.println("Presta atenção");
 				break;
 			}
 
@@ -152,4 +172,50 @@ public class Main {
 		diretor3.realizarApresentacao();
 
 	}
+
+	private static void aprenderPolimorfismoInterface() {
+
+		Humano pessoa = new Humano();
+		pessoa.setNome("Fulano");
+		pessoa.alimentar("macarrão");
+		pessoa.alimentar("arroz");
+		pessoa.comunicar("Boa noite, interface é muito fácil");
+		pessoa.locomover();
+
+		Gato vezu = new Gato();
+		vezu.alimentar("peixe");
+		vezu.alimentar("ração");
+		vezu.comunicar("Será que existem gatos programadores?");
+		vezu.locomover();
+
+		Capivara patolino = new Capivara();
+		patolino.alimentar("peixe");
+		patolino.comunicar("Será que existem gatos programadores?");
+		patolino.locomover();
+		Aviao comercial = new Aviao();
+		comercial.setModelo("Boeing 737");
+		System.out.println(comercial.freiar());
+		comercial.acelerar(870.5f);
+		System.out.println(comercial.getVelocidadeAtual());
+	}
+
+	private static void aprenderConceitosPOO() {
+		// Coesão
+		// Coesão está ligado ao princípio da responsabilidade única, onde uma classe
+		// deve ter apenas uma única responsabilidade e realizá-la de maneira
+		// satisfatória, ou seja, uma classe não deve assumir responsabilidades que não
+		// são suas .
+		// Uma vez sendo ignorado este princípio, passamos a ter problemas, como
+		// dificuldades de manutenção e de reuso.
+
+		Ponto pontoAlto = new Ponto(30, 1000);
+		Ponto esquerdaBaixo = new Ponto(-20, -100);
+
+		// A classe reta, é agregada por pontos que podem não estar inicializada
+		// A associação de reta e ponto e de um para muitos respectivamente
+		Reta torta = new Reta();
+		Reta retaDiagonal = new Reta(pontoAlto, esquerdaBaixo);
+
+	}
+
 }
